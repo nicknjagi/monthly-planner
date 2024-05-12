@@ -1,13 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import 'react-calendar/dist/Calendar.css'; */
+
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply font-montserrat uppercase text-forrest-green bg-beige
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.public-DraftEditor-content{
+  @apply normal-case
+}
+
+.DraftEditor-root .public-DraftStyleDefault-ul{
+  @apply my-0 normal-case
+}
+
+.react-calendar__navigation{
+  @apply hidden
+}
+
+.react-calendar__month-view{
+  @apply border-y border-stone-400 py-6 min-h-[211px] my-auto
+}
+
+.react-calendar{
+  @apply w-fit mx-auto pointer-events-none
+}
+
+.react-calendar__month-view, .react-calendar__month-view > div {
+  @apply  w-full max-w-[360px] mx-auto
+}
+
+.react-calendar__month-view__days__day--weekend{
+  @apply text-red-500
+}
+
+.react-calendar__month-view__days__day--neighboringMonth{
+  @apply invisible
+}
+
+.react-calendar__month-view__weekdays{
+  @apply mb-6
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  @apply w-full text-center text-[12px] font-semibold capitalize
+}
+
+.react-calendar__month-view__weekdays__weekday abbr{
+  @apply no-underline
+}
+
+.react-calendar__month-view__days{
+  @apply text-[12px] font-semibold gap-y-2
 }
