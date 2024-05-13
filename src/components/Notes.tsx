@@ -1,30 +1,32 @@
 import { ContentState, Editor, EditorState } from "draft-js";
 import { useEffect, useState } from "react";
 import { months } from "../utils";
+import { useAppSelector } from "../hooks";
 
 interface NotesProps {
   currentWeek: number
 } 
 
 const Notes: React.FC<NotesProps> = ({currentWeek}) => {
+  const {currentMonth} = useAppSelector(state => state.date)
   const [editorState, setEditorState] = useState<EditorState>(() => {
-    const notes = localStorage.getItem(`notes${months[new Date().getMonth()]}Week${currentWeek}`) || '' 
+    const notes = localStorage.getItem(`notes${months[currentMonth]}Week${currentWeek}`) || '' 
     
     const content = ContentState.createFromText(notes);
     return EditorState.createWithContent(content);
   });
 
   useEffect(() => {
-    const notes = localStorage.getItem(`notes${months[new Date().getMonth()]}Week${currentWeek}`) || '' 
+    const notes = localStorage.getItem(`notes${months[currentMonth]}Week${currentWeek}`) || '' 
     const content = ContentState.createFromText(notes);
     setEditorState(EditorState.createWithContent(content)) 
-  },[currentWeek])  
+  },[currentWeek, currentMonth])  
 
   const onChange = (editorState: EditorState) => {
     const contentState = editorState.getCurrentContent();
     const text = contentState.getPlainText();
     
-    localStorage.setItem(`notes${months[new Date().getMonth()]}Week${currentWeek}`, text)
+    localStorage.setItem(`notes${months[currentMonth]}Week${currentWeek}`, text)
     setEditorState(editorState);
   };
 
