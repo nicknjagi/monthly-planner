@@ -11,6 +11,7 @@ const WeekView = () => {
     return getCurrentWeekInMonth(currentMonth);
   });
   const [days, setDays] = useState<Array<{ date: number; day: string }>>([]);
+  // eslint-disable-next-line
   const [totalWeeks, setTotalWeeks] = useState(() => {
     return weeksInMonth(currentMonth);
   });
