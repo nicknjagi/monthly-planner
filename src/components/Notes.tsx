@@ -1,5 +1,5 @@
 import { ContentState, Editor, EditorState } from "draft-js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { months } from "../utils";
 
 interface NotesProps {
@@ -13,7 +13,12 @@ const Notes: React.FC<NotesProps> = ({currentWeek}) => {
     const content = ContentState.createFromText(notes);
     return EditorState.createWithContent(content);
   });
-  
+
+  useEffect(() => {
+    const notes = localStorage.getItem(`notes${months[new Date().getMonth()]}Week${currentWeek}`) || '' 
+    const content = ContentState.createFromText(notes);
+    setEditorState(EditorState.createWithContent(content)) 
+  },[currentWeek])  
 
   const onChange = (editorState: EditorState) => {
     const contentState = editorState.getCurrentContent();
