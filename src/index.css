@@ -56,3 +56,7 @@ body {
 .react-calendar__month-view__days{
   @apply text-[12px] font-semibold gap-y-2
 }
+
+.btn{
+  @apply border border-forrest-green px-4 py-1 rounded hover:text-white hover:bg-forrest-green transition
+}
