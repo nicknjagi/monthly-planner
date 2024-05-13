@@ -1,21 +1,29 @@
 import { ContentState, Editor, EditorState } from "draft-js"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { months } from "../utils";
+import { useAppSelector } from "../hooks";
 
 const TodoList = () => {
+  const {currentMonth} = useAppSelector(state => state.date)
   const [editorState, setEditorState] = useState<EditorState>(() => {
-    const todos = localStorage.getItem(`todos${months[new Date().getMonth()]}`) || '' 
-    
+    const todos = localStorage.getItem(`todos${months[currentMonth]}`) || '' 
     const content = ContentState.createFromText(todos);
     return EditorState.createWithContent(content);
   });
+
+  
+  useEffect(() => {  
+    const todos = localStorage.getItem(`todos${months[currentMonth]}`) || '' 
+    const content = ContentState.createFromText(todos);
+    setEditorState(EditorState.createWithContent(content)) 
+  }, [currentMonth]); 
   
 
   const onChange = (editorState: EditorState) => {
     const contentState = editorState.getCurrentContent();
     const text = contentState.getPlainText();
     
-    localStorage.setItem(`todos${months[new Date().getMonth()]}`, text)
+    localStorage.setItem(`todos${months[currentMonth]}`, text)
     setEditorState(editorState);
   };
 
