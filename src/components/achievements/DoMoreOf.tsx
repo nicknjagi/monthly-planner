@@ -1,18 +1,28 @@
 import { ContentState, Editor, EditorState } from "draft-js";
 import { months } from "../../utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAppSelector } from "../../hooks";
 
 const DoMoreOf = () => {
+  const {currentMonth} = useAppSelector(state => state.date)
   const [editorState, setEditorState] = useState<EditorState>(() => {
-    const DoMoreOf = localStorage.getItem(`DoMoreOf${months[new Date().getMonth()]}`) || "";
-    const content = ContentState.createFromText(DoMoreOf);
+    const doMoreOf = localStorage.getItem(`doMoreOf${months[currentMonth]}`) || "";
+    const content = ContentState.createFromText(doMoreOf);
     return EditorState.createWithContent(content);
   });
+
+
+  useEffect(() => {  
+    const doMoreOf = localStorage.getItem(`doMoreOf${months[currentMonth]}`) || '' 
+    const content = ContentState.createFromText(doMoreOf);
+    setEditorState(EditorState.createWithContent(content)) 
+  }, [currentMonth]); 
+
 
   const onChange = (editorState: EditorState) => {
     const contentState = editorState.getCurrentContent();
     const text = contentState.getPlainText();
-    localStorage.setItem(`DoMoreOf${months[new Date().getMonth()]}`, text);
+    localStorage.setItem(`doMoreOf${months[currentMonth]}`, text);
     setEditorState(editorState);
   };
 

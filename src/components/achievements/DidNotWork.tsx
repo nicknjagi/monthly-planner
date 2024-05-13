@@ -1,18 +1,28 @@
 import { ContentState, Editor, EditorState } from "draft-js";
 import { months } from "../../utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAppSelector } from "../../hooks";
 
 const DidNotWork = () => {
+  const {currentMonth} = useAppSelector(state => state.date)
   const [editorState, setEditorState] = useState<EditorState>(() => {
-    const DidNotWork = localStorage.getItem(`DidNotWork${months[new Date().getMonth()]}`) || "";
-    const content = ContentState.createFromText(DidNotWork);
+    const didNotWork = localStorage.getItem(`didNotWork${months[currentMonth]}`) || "";
+    const content = ContentState.createFromText(didNotWork);
     return EditorState.createWithContent(content);
   });
+
+
+  useEffect(() => {  
+    const didNotWork = localStorage.getItem(`didNotWork${months[currentMonth]}`) || '' 
+    const content = ContentState.createFromText(didNotWork);
+    setEditorState(EditorState.createWithContent(content)) 
+  }, [currentMonth]); 
+
 
   const onChange = (editorState: EditorState) => {
     const contentState = editorState.getCurrentContent();
     const text = contentState.getPlainText();
-    localStorage.setItem(`DidNotWork${months[new Date().getMonth()]}`, text);
+    localStorage.setItem(`didNotWork${months[currentMonth]}`, text);
     setEditorState(editorState);
   };
 

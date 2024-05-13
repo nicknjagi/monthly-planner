@@ -1,18 +1,28 @@
 import { ContentState, Editor, EditorState } from "draft-js";
 import { months } from "../../utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAppSelector } from "../../hooks";
 
 const DoLessOf = () => {
+  const {currentMonth} = useAppSelector(state => state.date)
   const [editorState, setEditorState] = useState<EditorState>(() => {
-    const DoLessOf = localStorage.getItem(`DoLessOf${months[new Date().getMonth()]}`) || "";
-    const content = ContentState.createFromText(DoLessOf);
+    const doLessOf = localStorage.getItem(`doLessOf${months[currentMonth]}`) || "";
+    const content = ContentState.createFromText(doLessOf);
     return EditorState.createWithContent(content);
   });
+
+  
+  useEffect(() => {  
+    const doLessOf = localStorage.getItem(`doLessOf${months[currentMonth]}`) || '' 
+    const content = ContentState.createFromText(doLessOf);
+    setEditorState(EditorState.createWithContent(content)) 
+  }, [currentMonth]); 
+
 
   const onChange = (editorState: EditorState) => {
     const contentState = editorState.getCurrentContent();
     const text = contentState.getPlainText();
-    localStorage.setItem(`DoLessOf${months[new Date().getMonth()]}`, text);
+    localStorage.setItem(`doLessOf${months[currentMonth]}`, text);
     setEditorState(editorState);
   };
 
