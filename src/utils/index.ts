@@ -3,9 +3,9 @@ export const months: string[] = ['January', 'February', 'March', 'April','May', 
 export const days: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
 
-export function getDaysInWeek(weekNumber: number): Array<{ date: number; day: string }> {
+export function getDaysInWeek(monthNumber: number, weekNumber: number): Array<{ date: number; day: string }> {
   const now = new Date();
-  const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const firstDayOfMonth = new Date(now.getFullYear(), monthNumber, 1);
   const firstDayOfWeek = new Date(firstDayOfMonth);
   firstDayOfWeek.setDate(firstDayOfMonth.getDate() + (weekNumber - 1) * 7 - firstDayOfMonth.getDay() + 1);
   const lastDayOfWeek = new Date(firstDayOfWeek);
@@ -14,7 +14,7 @@ export function getDaysInWeek(weekNumber: number): Array<{ date: number; day: st
   const daysArray: Array<{ date: number; day: string }> = [];
   for (let date = firstDayOfWeek; date <= lastDayOfWeek; date.setDate(date.getDate() + 1)) {
       // Check if the date is within the current month
-      if (date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear() && date.getDay()!== 0) {
+      if (date.getMonth() === monthNumber && date.getFullYear() === now.getFullYear() && date.getDay()!== 0) {
         const dayName = days[date.getDay()];
         daysArray.push({ date: date.getDate(), day: dayName });
     }
@@ -24,9 +24,9 @@ export function getDaysInWeek(weekNumber: number): Array<{ date: number; day: st
 }
 
 
-export function getCurrentWeekInMonth(): number {
+export function getCurrentWeekInMonth(monthNumber: number): number {
   const today = new Date();
-  const currentMonth = today.getMonth();
+  const currentMonth = monthNumber
   const currentYear = today.getFullYear();
 
   // Get the first day of the month
