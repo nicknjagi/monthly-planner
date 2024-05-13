@@ -1,12 +1,12 @@
 import DayList from "./DayList";
 import Months from "./Months";
 import Notes from "./Notes";
-import { getCurrentWeekNumber, getDaysInWeek, weeksInMonth } from "../utils";
+import { getCurrentWeekInMonth, getDaysInWeek, weeksInMonth } from "../utils";
 import { useEffect, useState } from "react";
 
 const WeekView = () => {
   const [currentWeek, setCurrentWeek] = useState(() => {
-    return getCurrentWeekNumber();
+    return getCurrentWeekInMonth();
   });
   const [days, setDays] = useState<Array<{ date: number; day: string }>>([]);
   const [totalWeeks, setTotalWeeks] = useState(() => {
