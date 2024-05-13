@@ -25,21 +25,21 @@ export function getDaysInWeek(weekNumber: number): Array<{ date: number; day: st
 
 
 export function getCurrentWeekInMonth(): number {
-    const today = new Date();
-    const currentMonth = today.getMonth();
-    const currentYear = today.getFullYear();
+  const today = new Date();
+  const currentMonth = today.getMonth();
+  const currentYear = today.getFullYear();
 
-    // Get the first day of the month
-    const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+  // Get the first day of the month
+  const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
 
-    // Calculate the current day of the month
-    const currentDayOfMonth = today.getDate();
+  // Calculate the current day of the month
+  const currentDayOfMonth = today.getDate();
 
-    // Calculate the current week within the month
-    const firstDayOfWeek = firstDayOfMonth.getDay();
-    const currentWeek = Math.ceil((currentDayOfMonth + firstDayOfWeek) / 7);
+  // Calculate the current week within the month
+  const firstDayOfWeek = firstDayOfMonth.getDay();
+  const currentWeek = Math.ceil((currentDayOfMonth + firstDayOfWeek) / 7);
 
-    return currentWeek;
+  return currentWeek;
 }
 
 
