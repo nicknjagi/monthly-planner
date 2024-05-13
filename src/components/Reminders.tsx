@@ -1,21 +1,29 @@
 import { ContentState, Editor, EditorState } from "draft-js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { months } from "../utils";
+import { useAppSelector } from "../hooks";
 
 const Reminders = () => {
+  const {currentMonth} = useAppSelector(state => state.date)
   const [editorState, setEditorState] = useState<EditorState>(() => {
-    const reminders = localStorage.getItem(`reminders${months[new Date().getMonth()]}`) || '' 
-    
+    const reminders = localStorage.getItem(`reminders${months[currentMonth]}`) || '' 
     const content = ContentState.createFromText(reminders);
     return EditorState.createWithContent(content);
   });
-  
+
+
+  useEffect(() => {  
+    const reminders = localStorage.getItem(`reminders${months[currentMonth]}`) || '' 
+    const content = ContentState.createFromText(reminders);
+    setEditorState(EditorState.createWithContent(content)) 
+  }, [currentMonth]); 
+
 
   const onChange = (editorState: EditorState) => {
     const contentState = editorState.getCurrentContent();
     const text = contentState.getPlainText();
-    
-    localStorage.setItem(`reminders${months[new Date().getMonth()]}`, text)
+  
+    localStorage.setItem(`reminders${months[currentMonth]}`, text)
     setEditorState(editorState);
   };
 
