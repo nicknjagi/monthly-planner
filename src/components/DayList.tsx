@@ -1,6 +1,7 @@
 import { ContentState, Editor, EditorState } from "draft-js";
 import { useEffect, useState } from "react";
 import { months } from "../utils";
+import { useAppSelector } from "../hooks";
 
 interface DayListProps {
   day: { date: number; day: string; },
@@ -8,22 +9,25 @@ interface DayListProps {
 }
 
 const DayList: React.FC<DayListProps> = ({ day, currentWeek }) => {
+  const {currentMonth} = useAppSelector(state => state.date)
   const [editorState, setEditorState] = useState<EditorState>(() => {
-    const todos = localStorage.getItem(`todos${months[new Date().getMonth()]}${day.date}`) || "";
+    const todos = localStorage.getItem(`todos${months[currentMonth]}${day.date}`) || "";
     const content = ContentState.createFromText(todos);
     return EditorState.createWithContent(content);
   });
+
   
   useEffect(() => {
-    const todos = localStorage.getItem(`todos${months[new Date().getMonth()]}${day.date}`) || "";    
+    const todos = localStorage.getItem(`todos${months[currentMonth]}${day.date}`) || "";    
     const content = ContentState.createFromText(todos);
     setEditorState(EditorState.createWithContent(content)) 
-  },[currentWeek,day])
+  },[currentWeek, day, currentMonth])
+
 
   const onChange = (editorState: EditorState) => {
     const contentState = editorState.getCurrentContent();
     const text = contentState.getPlainText();
-    localStorage.setItem(`todos${months[new Date().getMonth()]}${day.date}`, text);
+    localStorage.setItem(`todos${months[currentMonth]}${day.date}`, text);
     setEditorState(editorState);
   };
 
