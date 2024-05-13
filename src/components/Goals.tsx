@@ -3,6 +3,7 @@ import {Editor, EditorState,ContentState, SelectionState} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import { Modifier } from 'draft-js';
 import { months } from "../utils";
+import { useAppSelector } from "../hooks";
 
 interface MyEditorProps {}
 
@@ -11,22 +12,27 @@ interface MyEditorProps {}
 // }
 
 const Goals: React.FC<MyEditorProps> = () => {
+  const {currentMonth} = useAppSelector(state => state.date)
   const [editorState, setEditorState] = useState<EditorState>(() => {
-    const goals = localStorage.getItem(`goals${months[new Date().getMonth()]}`) || '' 
-    
+    const goals = localStorage.getItem(`goals${months[currentMonth]}`) || '' 
     const content = ContentState.createFromText(goals);
     return EditorState.createWithContent(content);
   })
+
+
   useEffect(() => {
-    const newEditorState = setBlockTypeToUnorderedList(editorState);
-    setEditorState(newEditorState);
-  }, []); 
+    const goals = localStorage.getItem(`goals${months[currentMonth]}`) || '' 
+    const content = ContentState.createFromText(goals);
+    const newEditorState = setBlockTypeToUnorderedList(EditorState.createWithContent(content));
+    setEditorState(newEditorState) 
+  }, [currentMonth]); 
+
 
   const onChange = (editorState: EditorState) => {
     const contentState = editorState.getCurrentContent();
     const text = contentState.getPlainText();
     
-    localStorage.setItem(`goals${months[new Date().getMonth()]}`, text)
+    localStorage.setItem(`goals${months[currentMonth]}`, text)
     setEditorState(editorState);
   };
 
