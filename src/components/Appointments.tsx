@@ -1,21 +1,28 @@
 import { ContentState, Editor, EditorState } from "draft-js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { months } from "../utils";
+import { useAppSelector } from "../hooks";
 
 const Appointments = () => {
+  const {currentMonth} = useAppSelector(state => state.date)
   const [editorState, setEditorState] = useState<EditorState>(() => {
-    const appointments = localStorage.getItem(`appointments${months[new Date().getMonth()]}`) || '' 
-    
+    const appointments = localStorage.getItem(`appointments${months[currentMonth]}`) || '' 
     const content = ContentState.createFromText(appointments);
     return EditorState.createWithContent(content);
   });
   
+  
+  useEffect(() => {  
+    const appointments = localStorage.getItem(`appointments${months[currentMonth]}`) || '' 
+    const content = ContentState.createFromText(appointments);
+    setEditorState(EditorState.createWithContent(content)) 
+  }, [currentMonth]); 
+
 
   const onChange = (editorState: EditorState) => {
     const contentState = editorState.getCurrentContent();
     const text = contentState.getPlainText();
-    
-    localStorage.setItem(`appointments${months[new Date().getMonth()]}`, text)
+    localStorage.setItem(`appointments${months[currentMonth]}`, text)
     setEditorState(editorState);
   };
 
