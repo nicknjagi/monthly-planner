@@ -3,19 +3,21 @@ import Months from "./Months";
 import Notes from "./Notes";
 import { getCurrentWeekInMonth, getDaysInWeek, weeksInMonth } from "../utils";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "../hooks";
 
 const WeekView = () => {
+  const {currentMonth} = useAppSelector(state => state.date)
   const [currentWeek, setCurrentWeek] = useState(() => {
-    return getCurrentWeekInMonth();
+    return getCurrentWeekInMonth(currentMonth);
   });
   const [days, setDays] = useState<Array<{ date: number; day: string }>>([]);
   const [totalWeeks, setTotalWeeks] = useState(() => {
-    return weeksInMonth(new Date().getMonth());
+    return weeksInMonth(currentMonth);
   });
 
   useEffect(() => {
-    setDays(getDaysInWeek(currentWeek));
-  }, [currentWeek]);
+    setDays(getDaysInWeek(currentMonth, currentWeek));
+  }, [currentWeek, currentMonth]);
 
   function handlePrev(){
     if(currentWeek !== 1){
@@ -36,8 +38,8 @@ const WeekView = () => {
           <div className="order-last md:order-first">
             <h3 className="text-4xl lg:text-6xl font-medium capitalize mb-2">Week {currentWeek}</h3>
             <div className="flex gap-2">
-              <button onClick={handlePrev} className="border border-forrest-green px-4 py-1 rounded hover:text-white hover:bg-forrest-green transition">Previous</button>
-              <button onClick={handleNext} className="border border-forrest-green px-4 py-1 rounded hover:text-white hover:bg-forrest-green transition">Next</button>
+              <button onClick={handlePrev} className="btn">Previous</button>
+              <button onClick={handleNext} className="btn">Next</button>
             </div>
           </div>
           <Months />
