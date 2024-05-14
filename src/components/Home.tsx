@@ -10,8 +10,8 @@ const Home = () => {
   const {currentMonth} = useAppSelector(state => state.date)
   return (
     <section className="px-4 md:px-8 max-w-5xl mx-auto">
-      <h1 className="text-center"><span className="inline-block mt-6 text-7xl font-lato capitalize translate-x-6 translate-y-2">{months[currentMonth]}</span></h1>
-      <h1 className="font-semibold tracking-widest text-center mb-8">MONTHLY PLANNER <span className="inline-block -translate-y-2 font-medium ml-5">{new Date().getFullYear()}</span></h1>
+      <h1 className="text-center"><span className="inline-block mt-6 mb-2 text-7xl font-lato capitalize">{months[currentMonth]}</span></h1>
+      <h1 className="font-semibold tracking-widest text-center mb-8">MONTHLY PLANNER <span className="inline-block font-semibold ">{new Date().getFullYear()}</span></h1>
 
       <div className="grid h-fit md:grid md:grid-cols-2 gap-8">
         <CustomCalender />
