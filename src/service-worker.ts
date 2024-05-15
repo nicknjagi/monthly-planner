@@ -82,25 +82,28 @@ self.addEventListener('message', (event) => {
   }
 });
 
+const CURRENT_VERSION = 'v2'; 
 
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      const networkFetch = fetch(event.request).then(response => {
-        // update the cache with a clone of the network response
-        const responseClone = response.clone();
-        const url = new URL(event.request.url);
-        caches.open(url.searchParams.get('name') || 'defaultCache').then(cache => {
-          cache.put(event.request, responseClone);
-        });
-        return response;
-      }).catch(function (reason) {
-        console.error('ServiceWorker fetch failed: ', reason);
-        // Return a default response in case of error
-        return new Response('Network error', { status: 500 });
-      });
-      // prioritize cached response over network
-      return cachedResponse || networkFetch;
-    })
+self.addEventListener('activate', (event) => {
+  const currentCaches = [`images-${CURRENT_VERSION}`, `workbox-precache-${CURRENT_VERSION}`, `defaultCache-${CURRENT_VERSION}`];
+
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (!currentCaches.includes(cacheName)) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
   );
+});
+
+self.addEventListener('waiting', (event) => {
+  // Prompt the user to update
+  const updateAccepted = confirm('An update is available. Reload to update?');
+  if (updateAccepted) {
+    self.skipWaiting();
+  }
 });
