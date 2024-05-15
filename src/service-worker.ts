@@ -75,6 +75,32 @@ self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
+  if (event.data.type === 'CACHE_UPDATED') {
+    const {updatedURL} = event.data.payload;
+
+    console.log(`A newer version of ${updatedURL} is available!`);
+  }
 });
 
-// Any other custom service worker logic can go here.
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      const networkFetch = fetch(event.request).then(response => {
+        // update the cache with a clone of the network response
+        const responseClone = response.clone();
+        const url = new URL(event.request.url);
+        caches.open(url.searchParams.get('name') || 'defaultCache').then(cache => {
+          cache.put(event.request, responseClone);
+        });
+        return response;
+      }).catch(function (reason) {
+        console.error('ServiceWorker fetch failed: ', reason);
+        // Return a default response in case of error
+        return new Response('Network error', { status: 500 });
+      });
+      // prioritize cached response over network
+      return cachedResponse || networkFetch;
+    })
+  );
+});
