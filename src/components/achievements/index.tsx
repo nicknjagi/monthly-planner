@@ -32,7 +32,7 @@ const Achievements = () => {
 
   return (
     <section className="bg-white px-4 md:px-8 pb-20">
-      <div className="w-full max-w-5xl mx-auto">
+      <div className="w-full max-w-[960px] mx-auto">
         <h2 className="text-2xl md:text-4xl text-center mb-6">
           {months[currentMonth]} Achievements
         </h2>
