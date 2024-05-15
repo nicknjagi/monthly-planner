@@ -34,7 +34,7 @@ const WeekView = () => {
 
   return (
     <section className="w-full px-4 md:px-8 py-20 bg-white">
-      <div className="flex flex-col gap-8 max-w-5xl mx-auto">
+      <div className="flex flex-col gap-8 max-w-[960px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-4">
           <div className="order-last md:order-first">
             <h3 className="text-4xl lg:text-6xl font-medium capitalize mb-2">Week {currentWeek}</h3>
