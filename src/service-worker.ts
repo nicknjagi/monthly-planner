@@ -93,6 +93,8 @@ self.addEventListener('activate', (event) => {
         cacheNames.map((cacheName) => {
           if (!currentCaches.includes(cacheName)) {
             return caches.delete(cacheName);
+          }else {
+            return Promise.resolve(); 
           }
         })
       );
