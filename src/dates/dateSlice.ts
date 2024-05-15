@@ -1,5 +1,5 @@
 import { createSlice} from "@reduxjs/toolkit";
-// import type { PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 import { getCurrentWeekInMonth } from "../utils";
 
 
@@ -27,9 +27,12 @@ const dateSlice = createSlice({
         state.currentMonth -= 1
       }
     },
+    setCurrentMonth: (state, action: PayloadAction<number>) => {
+      state.currentMonth = action.payload
+    }
   }
 })
 
-export const {next, prev} = dateSlice.actions
+export const {next, prev, setCurrentMonth} = dateSlice.actions
 
 export default dateSlice.reducer
