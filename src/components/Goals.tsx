@@ -37,9 +37,9 @@ const Goals: React.FC<MyEditorProps> = () => {
   };
 
   return (
-    <form className="grid w-full mx-auto max-w-md md:max-w-lg ">
+    <form className="grid w-full mx-auto max-w-3xl md:max-w-lg ">
       <h2 className="text-center font-semibold tracking-[3px]">GOALS</h2>
-      <div className="grid px-4 bg-[repeating-linear-gradient(to_bottom,_white,_white_40px,_rgb(168,162,158)_1px,_white_42px)] h-full min-h-[211px] md:min-h-[253px] overflow-y-hidden leading-[42px] border-2 border-stone-400">
+      <div className="grid px-4 bg-[repeating-linear-gradient(to_bottom,_white,_white_40px,_rgb(168,162,158)_1px,_white_42px)] break-words h-full min-h-[208px] md:min-h-[253px] overflow-y-hidden leading-[42px] border-2 border-stone-400">
         <Editor editorState={editorState} onChange={onChange} />
       </div>
     </form>
