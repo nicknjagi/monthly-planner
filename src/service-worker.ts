@@ -13,6 +13,9 @@ import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
+import {pageCache,staticResourceCache,googleFontsCache} from 'workbox-recipes';
+import {CacheableResponsePlugin} from 'workbox-cacheable-response';
+
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -65,6 +68,9 @@ registerRoute(
       // Ensure that once this runtime cache reaches a maximum size the
       // least-recently used images are removed.
       new ExpirationPlugin({ maxEntries: 50 }),
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
     ],
   })
 );
@@ -84,28 +90,13 @@ self.addEventListener('message', (event) => {
 
 const CURRENT_VERSION = 'v2'; 
 
-self.addEventListener('activate', (event) => {
-  const currentCaches = [`images-${CURRENT_VERSION}`, `workbox-precache-${CURRENT_VERSION}`, `defaultCache-${CURRENT_VERSION}`];
+// allows your service worker to respond to a request for an HTML page (through URL navigation) with a network first caching strategy, optimized to, ideally, allow for the cache fallback to arrive quick enough for for a largest contentful paint score of less than 4.0 seconds.
+pageCache()
 
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (!currentCaches.includes(cacheName)) {
-            return caches.delete(cacheName);
-          }else {
-            return Promise.resolve(); 
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
-  );
-});
+//  allows your service worker to respond to a request for static resources, specifically CSS, JavaScript, and Web Worker requests, with a stale-while-revalidate caching strategy so those assets can be quickly served from the cache and be updated in the background
+staticResourceCache();
 
-self.addEventListener('waiting', (event) => {
-  // Prompt the user to update
-  const updateAccepted = confirm('An update is available. Reload to update?');
-  if (updateAccepted) {
-    self.skipWaiting();
-  }
-});
+// The Google Fonts recipe caches the two parts of a Google Fonts request:
+  // The stylesheet with the @font-face definitions, which link to the font files.
+  // The static, revisioned font files.
+googleFontsCache();
