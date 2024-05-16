@@ -28,9 +28,9 @@ const TodoList = () => {
   };
 
   return (
-    <form className="w-full mx-auto max-w-md md:max-w-lg">
+    <form className="w-full mx-auto max-w-3xl md:max-w-lg">
       <h2 className="text-center font-semibold tracking-[3px]">TO DO LIST</h2>
-      <div className="grid px-4 bg-[repeating-linear-gradient(to_bottom,_#F6F5F1,_#F6F5F1_40px,_rgb(168,162,158)_1px,_#F6F5F1_42px)] h-full min-h-[337px] md:min-h-[522px] overflow-y-hidden leading-[42px] border-y-2 border-stone-400">
+      <div className="grid px-4 bg-[repeating-linear-gradient(to_bottom,_#F6F5F1,_#F6F5F1_40px,_rgb(168,162,158)_1px,_#F6F5F1_42px)] h-full min-h-[337px]  md:min-h-[460px] overflow-y-auto leading-[42px] border-2 border-stone-400">
         <Editor editorState={editorState} onChange={onChange} />
       </div>
     </form>

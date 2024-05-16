@@ -32,7 +32,7 @@ const DoLessOf = () => {
         <h3 className="text-xl text-center font-medium">
           do less of
         </h3>
-        <div className="grid px-2 mb-6 bg-[repeating-linear-gradient(to_bottom,_white,_white_40px,_rgb(168,162,158)_1px,_white_42px)] h-full min-h-[252px] overflow-y-auto leading-[42px] border-l-2 border-t-2 border-black">
+        <div className="grid px-4 mb-6 bg-[repeating-linear-gradient(to_bottom,_white,_white_40px,_rgb(168,162,158)_1px,_white_42px)] h-full min-h-[252px] overflow-y-auto leading-[42px] border-2 border-stone-400">
           <Editor editorState={editorState} onChange={onChange} />
         </div>
       </div>

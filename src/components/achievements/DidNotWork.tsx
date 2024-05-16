@@ -32,7 +32,7 @@ const DidNotWork = () => {
         <h3 className="text-xl text-center font-medium underline mb-10">
           What Didn't Work
         </h3>
-        <div className="grid mb-6 bg-[repeating-linear-gradient(to_bottom,_white,_white_40px,_rgb(168,162,158)_1px,_white_42px)] h-full min-h-[130px] overflow-y-auto leading-[42px] border-t border-[rgb(168,162,158)]">
+        <div className="grid px-4 mb-6 bg-[repeating-linear-gradient(to_bottom,_white,_white_40px,_rgb(168,162,158)_1px,_white_42px)] h-full min-h-[126px] overflow-y-auto leading-[42px] border-t border-x-2 border-stone-400">
           <Editor editorState={editorState} onChange={onChange} />
         </div>
       </div>

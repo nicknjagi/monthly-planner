@@ -36,7 +36,7 @@ const Achievements = () => {
         <h2 className="text-2xl md:text-4xl text-center mb-6">
           {months[currentMonth]} Achievements
         </h2>
-        <div className="grid mb-6 bg-[repeating-linear-gradient(to_bottom,_white,_white_40px,_rgb(168,162,158)_1px,_white_42px)] h-full min-h-[380px] overflow-y-auto leading-[42px] border-t border-[rgb(168,162,158)]">
+        <div className="grid px-4 mb-6 bg-[repeating-linear-gradient(to_bottom,_white,_white_40px,_rgb(168,162,158)_1px,_white_42px)] h-full min-h-[379px] overflow-y-auto leading-[42px] border-t-2 border-x-2 border-stone-400">
           <Editor editorState={editorState} onChange={onChange} />
         </div>
         <Worked />
