@@ -1,6 +1,6 @@
 {
-  "short_name": "monthly planner",
-  "name": "monthly planner",
+  "short_name": "Monthly Planner",
+  "name": "Monthly Planner",
   "icons": [
     {
       "src": "favicon.ico",
@@ -27,5 +27,13 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#F6F5F1",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "color_overrides": [
+    {
+      "media": "(prefers-color-scheme: dark)",
+      "theme_color": "#F6F5F1",
+      "background_color": "#ffffff"
+    }
+  ]
+
 }
