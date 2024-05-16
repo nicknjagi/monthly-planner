@@ -13,6 +13,10 @@ body {
   @apply normal-case
 }
 
+.DraftEditor-root, .DraftEditor-editorContainer,.public-DraftEditor-content{
+  @apply h-full
+}
+
 .DraftEditor-root .public-DraftStyleDefault-ul{
   @apply my-0 normal-case
 }
