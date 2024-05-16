@@ -88,7 +88,7 @@ self.addEventListener('message', (event) => {
   }
 });
 
-const CURRENT_VERSION = 'v2'; 
+// const CURRENT_VERSION = 'v2'; 
 
 // allows your service worker to respond to a request for an HTML page (through URL navigation) with a network first caching strategy, optimized to, ideally, allow for the cache fallback to arrive quick enough for for a largest contentful paint score of less than 4.0 seconds.
 pageCache()
