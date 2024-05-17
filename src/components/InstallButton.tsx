@@ -16,8 +16,13 @@ const InstallButton: React.FC = () => {
   const [showInstallButton, setShowInstallButton] = useState<boolean>(() =>{
     // Check if the app has been installed before
     const isAppInstalled = localStorage.getItem('appInstalled') === 'true';
-    return !isAppInstalled && !window.matchMedia('(display-mode: standalone)').matches;
+    return !isAppInstalled && !window.matchMedia('(display-mode: standalone)').matches && !isIphone()
   });
+
+
+  const isIphone = () => {
+    return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  };
 
 
   useEffect(() => {
