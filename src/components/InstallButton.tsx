@@ -10,7 +10,8 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const isIphone = () => {
-  return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const platform = navigator.platform.toLowerCase();
+  return platform.includes('iphone') || platform.includes('ipad') || platform.includes('ipod');
 };
 
 const InstallButton: React.FC = () => {
