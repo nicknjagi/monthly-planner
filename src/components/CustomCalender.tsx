@@ -14,7 +14,7 @@ export default function CustomCalender() {
   const dispatch = useAppDispatch()
 
   useEffect(()=>{
-    setValue(new Date(`2024, ${currentMonth + 1}`))
+    setValue(new Date(`2024, ${currentMonth + 1}, 1`))
   },[currentMonth])
 
   return (
