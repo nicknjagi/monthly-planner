@@ -9,6 +9,9 @@ interface BeforeInstallPromptEvent extends Event {
   }>;
 }
 
+const isIphone = () => {
+  return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+};
 
 const InstallButton: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
@@ -18,11 +21,6 @@ const InstallButton: React.FC = () => {
     const isAppInstalled = localStorage.getItem('appInstalled') === 'true';
     return !isAppInstalled && !window.matchMedia('(display-mode: standalone)').matches && !isIphone()
   });
-
-
-  const isIphone = () => {
-    return /iPhone|iPad|iPod/i.test(navigator.userAgent);
-  };
 
 
   useEffect(() => {
