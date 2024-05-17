@@ -10,7 +10,7 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const isIphone = () => {
-  const platform = navigator.platform.toLowerCase();
+  const platform = navigator.userAgent.toLowerCase();
   return platform.includes('iphone') || platform.includes('ipad') 
 };
 
