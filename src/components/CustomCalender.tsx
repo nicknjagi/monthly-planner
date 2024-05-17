@@ -10,11 +10,11 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export default function CustomCalender() {
   const {currentMonth} = useAppSelector(state => state.date)
-  const [value, setValue] = useState<Value>(new Date(`2024, ${currentMonth + 1}, ${new Date().getDate()}`));
+  const [value, setValue] = useState<Value>(new Date(2024, currentMonth + 1, new Date().getDate()));
   const dispatch = useAppDispatch()
 
   useEffect(()=>{
-    setValue(new Date(`2024, ${currentMonth + 1}, 1`))
+    setValue(new Date(2024, currentMonth + 1, 1))
   },[currentMonth])
 
   return (
