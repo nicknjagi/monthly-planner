@@ -70,8 +70,6 @@ const InstallButton: React.FC = () => {
     }
   };
 
-  // const isSafari = /^((?!chrome|android).)*safari/.test(navigator.userAgent.toLowerCase());
-
   return (
     <div className='flex justify-end absolute top-0 right-0'>
       {showInstallButton  && (
