@@ -31,11 +31,18 @@ const Achievements = () => {
   };
 
   return (
-    <section className="bg-white px-4 md:px-8 pb-20">
+    <section className="bg-white px-4 md:px-8 py-8">
       <div className="w-full max-w-[960px] mx-auto">
-        <h2 className="text-2xl md:text-4xl text-center mb-6">
-          {months[currentMonth]} Achievements
-        </h2>
+        <div className="flex justify-between items-center mb-8">
+          <img
+            className="w-28 md:w-40 h-fit aspect-[3/2] -translate-x-2 md:-translate-x-6"
+            src="./assets/images/logo.png"
+            alt="logo"
+          />
+          <h2 className="text-2xl md:text-4xl text-center">
+            {months[currentMonth]} Achievements
+          </h2>
+        </div>
         <div className="grid px-4 mb-6 bg-[repeating-linear-gradient(to_bottom,_white,_white_40px,_rgb(168,162,158)_1px,_white_42px)] h-full min-h-[379px] overflow-y-auto leading-[42px] border-t-2 border-x-2 border-stone-400">
           <Editor editorState={editorState} onChange={onChange} />
         </div>
