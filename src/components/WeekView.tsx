@@ -34,13 +34,6 @@ const WeekView = () => {
 
   return (
     <section className="w-full px-4 md:px-8 pt-8 bg-white">
-      {/* <div className="max-w-[960px] mx-auto">
-        <img
-          className="w-28 md:w-40 h-fit aspect-[3/2] -translate-x-2 md:-translate-x-6 mb-8"
-          src="./assets/images/logo.png"
-          alt="logo"
-        />
-      </div> */}
       <div className="flex flex-col gap-6 max-w-[960px] mx-auto">
         <div className="flex flex-col justify-between mb-4">
           <div className="flex justify-between md:items-center mb-4">
