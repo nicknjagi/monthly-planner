@@ -27,7 +27,7 @@ const Appointments = () => {
   };
 
   return (
-    <form className="w-full mx-auto max-w-3xl md:max-w-sm">
+    <form className="w-full mx-auto max-w-3xl md:max-w-md">
       <h2 className="text-center font-semibold tracking-[3px]">Appointments</h2>
       <div className="grid p-4 bg-white h-full min-h-[211px] max-h-[211px] border-2 overflow-y-auto border-stone-400">
         <Editor editorState={editorState} onChange={onChange} />
