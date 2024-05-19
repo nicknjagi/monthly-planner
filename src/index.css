@@ -34,7 +34,7 @@ body {
 }
 
 .react-calendar__month-view, .react-calendar__month-view > div {
-  @apply  w-full max-w-[360px] mx-auto
+  @apply  w-full max-w-[500px] mx-auto
 }
 
 .react-calendar__month-view__days__day--weekend{
@@ -58,7 +58,7 @@ body {
 }
 
 .react-calendar__month-view__days{
-  @apply text-[12px] font-semibold gap-y-2
+  @apply text-[12px] font-semibold gap-y-3
 }
 
 .btn{
