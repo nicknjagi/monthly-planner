@@ -7,9 +7,9 @@ const Months = () => {
   const dispatch = useAppDispatch()
 
   return (
-    <div className="grid grid-cols-6 border border-black w-full max-w-2xl">
+    <div className="grid grid-cols-6 border border-black w-full">
       {months.map((month, index) => {
-        return <button key={index} onClick={() => dispatch(setCurrentMonth(index))} className={`grid place-content-center border border-black py-1 text-[12px] tracking-widest ${currentMonth === index ? 'bg-[#B4B0A5]' : ''}`}>{month.slice(0, 3)}</button>
+        return <button key={index} onClick={() => dispatch(setCurrentMonth(index))} className={`grid place-content-center border border-black py-2 text-[12px] tracking-widest ${currentMonth === index ? 'bg-[#B4B0A5]' : ''}`}>{month.slice(0, 3)}</button>
       })}
     </div>
   )
