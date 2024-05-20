@@ -71,9 +71,9 @@ const InstallButton: React.FC = () => {
   };
 
   return (
-    <div className='flex justify-end absolute top-0 right-0'>
+    <div className='flex justify-end '>
       {showInstallButton  && (
-          <button className="flex gap-1 items-center px-4 py-2 rounded-full bg-forrest-green hover:bg-opacity-90 transition text-white m-2 shadow-md shadow-green-50" onClick={installApp}>
+          <button className="flex gap-1 items-center px-4 py-2 rounded-full bg-forrest-green hover:bg-opacity-90 transition translate-y-6 text-white mx-2 -mt-4 shadow-md shadow-green-50" onClick={installApp}>
             <Download size={16} />
             Install <span className="hidden md:inline-block"> the app</span>
           </button>
