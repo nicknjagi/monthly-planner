@@ -1,5 +1,5 @@
 import Appointments from "./Appointments";
-import CustomCalender from "./CustomCalender";
+import CustomCalendar from "./CustomCalendar";
 import Goals from "./Goals";
 import Reminders from "./Reminders";
 import TodoList from "./TodoList";
@@ -9,7 +9,7 @@ import { useAppSelector } from "../hooks";
 const Home = () => {
   const {currentMonth} = useAppSelector(state => state.date)
   return (
-    <section className="px-4 py-6 md:px-8 max-w-5xl mx-auto">
+    <section className="px-4 pt-8 pb-6 md:px-8 max-w-5xl mx-auto">
       <div className="flex justify-between">
         <img
           className="w-28 md:w-40 h-fit aspect-[3/2] -translate-x-2 md:-translate-x-6"
@@ -32,7 +32,7 @@ const Home = () => {
       </div>
 
       <div className="grid h-fit md:grid md:grid-cols-2 gap-8">
-        <CustomCalender />
+        <CustomCalendar />
         <Goals />
       </div>
 

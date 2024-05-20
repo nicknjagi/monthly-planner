@@ -8,7 +8,7 @@ type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-export default function CustomCalender() {
+export default function CustomCalendar() {
   const {currentMonth} = useAppSelector(state => state.date)
   const [value, setValue] = useState<Value>(new Date(2024, currentMonth + 1, new Date().getDate()));
   const dispatch = useAppDispatch()
@@ -19,7 +19,7 @@ export default function CustomCalender() {
 
   return (
     <div className="md:order-1 ">
-      <h2 className="text-center font-semibold tracking-[3px]">calender</h2>
+      <h2 className="text-center font-semibold tracking-[3px]">calendar</h2>
       <div className="flex items-center gap-2 w-fit mx-auto">
         <button onClick={() => dispatch(prev())} className="">
           <ChevronLeft />
