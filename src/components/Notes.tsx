@@ -32,7 +32,7 @@ const Notes: React.FC<NotesProps> = ({currentWeek}) => {
 
   return (
     <form className="w-full mx-auto">
-      <h2 className=" text-3xl capitalize tracking-[3px]">Notes</h2>
+      <h2 className=" text-2xl capitalize ">THINGS I AM GREATFUL FOR</h2>
       <div className="grid p-4 bg-[#F6F5F1] h-full min-h-[211px] max-h-[211px] border overflow-y-auto border-black">
         <Editor editorState={editorState} onChange={onChange} />
       </div>

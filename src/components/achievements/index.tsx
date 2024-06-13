@@ -1,10 +1,10 @@
 import { ContentState, Editor, EditorState } from "draft-js"
 import { months } from "../../utils"
 import { useEffect, useState } from "react";
-import Worked from "./Worked";
-import DidNotWork from "./DidNotWork";
-import DoMoreOf from "./DoMoreOf";
-import DoLessOf from "./DoLessOf";
+import Worked from "./CurrentReads";
+import DidNotWork from "./ActsOfKindness";
+import DoMoreOf from "./AreasForGrowth";
+import DoLessOf from "./ReflectiveDiscoveries";
 import { useAppSelector } from "../../hooks";
 
 const Achievements = () => {

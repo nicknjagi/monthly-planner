@@ -1,8 +1,8 @@
 import Appointments from "./Appointments";
 import CustomCalendar from "./CustomCalendar";
-import Goals from "./Goals";
+import Goals from "./Affirmations";
 import Reminders from "./Reminders";
-import TodoList from "./TodoList";
+import TodoList from "./Goals";
 import { months } from "../utils";
 import { useAppSelector } from "../hooks"; 
 
