@@ -2,6 +2,7 @@ import { ContentState, Editor, EditorState } from "draft-js"
 import { useEffect, useState } from "react";
 import { months } from "../utils";
 import { useAppSelector } from "../hooks";
+import { setBlockTypeToUnorderedList } from "./Affirmations";
 
 const TodoList = () => {
   const {currentMonth} = useAppSelector(state => state.date)
@@ -15,7 +16,8 @@ const TodoList = () => {
   useEffect(() => {  
     const todos = localStorage.getItem(`todos${months[currentMonth]}`) || '' 
     const content = ContentState.createFromText(todos);
-    setEditorState(EditorState.createWithContent(content)) 
+    const newEditorState = setBlockTypeToUnorderedList(EditorState.createWithContent(content));
+    setEditorState(newEditorState)
   }, [currentMonth]); 
   
 

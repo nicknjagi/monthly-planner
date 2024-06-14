@@ -2,6 +2,7 @@ import { ContentState, Editor, EditorState } from "draft-js";
 import { useEffect, useState } from "react";
 import { months } from "../utils";
 import { useAppSelector } from "../hooks";
+import { setBlockTypeToUnorderedList } from "./Affirmations";
 
 interface DayListProps {
   day: { date: number; day: string; },
@@ -20,7 +21,8 @@ const DayList: React.FC<DayListProps> = ({ day, currentWeek }) => {
   useEffect(() => {
     const todos = localStorage.getItem(`todos${months[currentMonth]}${day.date}`) || "";    
     const content = ContentState.createFromText(todos);
-    setEditorState(EditorState.createWithContent(content)) 
+    const newEditorState = setBlockTypeToUnorderedList(EditorState.createWithContent(content));
+    setEditorState(newEditorState)
   },[currentWeek, day, currentMonth])
 
 

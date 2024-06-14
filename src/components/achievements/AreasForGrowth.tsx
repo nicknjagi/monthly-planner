@@ -2,6 +2,7 @@ import { ContentState, Editor, EditorState } from "draft-js";
 import { months } from "../../utils";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks";
+import { setBlockTypeToUnorderedList } from "../Affirmations";
 
 const DoMoreOf = () => {
   const {currentMonth} = useAppSelector(state => state.date)
@@ -15,7 +16,8 @@ const DoMoreOf = () => {
   useEffect(() => {  
     const doMoreOf = localStorage.getItem(`doMoreOf${months[currentMonth]}`) || '' 
     const content = ContentState.createFromText(doMoreOf);
-    setEditorState(EditorState.createWithContent(content)) 
+    const newEditorState = setBlockTypeToUnorderedList(EditorState.createWithContent(content));
+    setEditorState(newEditorState)
   }, [currentMonth]); 
 
 

@@ -2,6 +2,7 @@ import { ContentState, Editor, EditorState } from "draft-js";
 import { months } from "../../utils";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks";
+import { setBlockTypeToUnorderedList } from "../Affirmations";
 
 const DidNotWork = () => {
   const {currentMonth} = useAppSelector(state => state.date)
@@ -15,7 +16,8 @@ const DidNotWork = () => {
   useEffect(() => {  
     const didNotWork = localStorage.getItem(`didNotWork${months[currentMonth]}`) || '' 
     const content = ContentState.createFromText(didNotWork);
-    setEditorState(EditorState.createWithContent(content)) 
+    const newEditorState = setBlockTypeToUnorderedList(EditorState.createWithContent(content));
+    setEditorState(newEditorState)
   }, [currentMonth]); 
 
 

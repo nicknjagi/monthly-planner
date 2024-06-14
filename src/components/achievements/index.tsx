@@ -6,6 +6,7 @@ import DidNotWork from "./ActsOfKindness";
 import DoMoreOf from "./AreasForGrowth";
 import DoLessOf from "./ReflectiveDiscoveries";
 import { useAppSelector } from "../../hooks";
+import { setBlockTypeToUnorderedList } from "../Affirmations";
 
 const Achievements = () => {
   const {currentMonth} = useAppSelector(state => state.date)
@@ -19,7 +20,8 @@ const Achievements = () => {
   useEffect(() => {  
     const achievements = localStorage.getItem(`achievements${months[currentMonth]}`) || '' 
     const content = ContentState.createFromText(achievements);
-    setEditorState(EditorState.createWithContent(content)) 
+    const newEditorState = setBlockTypeToUnorderedList(EditorState.createWithContent(content));
+    setEditorState(newEditorState)
   }, [currentMonth]); 
 
 

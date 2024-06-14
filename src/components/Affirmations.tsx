@@ -47,7 +47,7 @@ const Goals: React.FC<MyEditorProps> = () => {
 }
 export default Goals
 
-function setBlockTypeToUnorderedList(editorState: EditorState): EditorState {
+export function setBlockTypeToUnorderedList(editorState: EditorState): EditorState {
   const contentState = editorState.getCurrentContent();
   const firstBlockKey = contentState.getFirstBlock().getKey();
   const lastBlockKey = contentState.getLastBlock().getKey();
