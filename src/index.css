@@ -25,6 +25,18 @@ body {
   @apply hidden
 }
 
+.react-calendar__tile{
+  @apply py-[4px] 
+}
+
+.react-calendar__tile--now.react-calendar__month-view__days__day--weekend{
+  @apply relative text-beige overflow-visible
+}
+
+.react-calendar__tile--now::after{
+  @apply content-[''] absolute top-1/2 -translate-y-[52%] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-forrest-green opacity-70 -z-10
+}
+ 
 .react-calendar__month-view{
   @apply border-y border-stone-400 py-6 min-h-[211px] my-auto
 }
@@ -58,7 +70,7 @@ body {
 }
 
 .react-calendar__month-view__days{
-  @apply text-[12px] font-semibold gap-y-3
+  @apply text-[12px] font-semibold gap-y-1
 }
 
 .btn{
