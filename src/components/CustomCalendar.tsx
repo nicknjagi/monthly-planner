@@ -14,7 +14,8 @@ export default function CustomCalendar() {
   const dispatch = useAppDispatch()
 
   useEffect(()=>{
-    setValue(new Date(2024, currentMonth, 1))
+    const year = new Date().getFullYear()
+    setValue(new Date(year, currentMonth, 1))
   },[currentMonth])
 
   return (
