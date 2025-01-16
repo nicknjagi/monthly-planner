@@ -29,12 +29,12 @@ body {
   @apply py-[4px] 
 }
 
-.react-calendar__tile--now.react-calendar__month-view__days__day--weekend{
+.react-calendar__tile--now.react-calendar__month-view__days__day,.react-calendar__tile--now.react-calendar__month-view__days__day--weekend{
   @apply relative text-beige overflow-visible
 }
 
 .react-calendar__tile--now::after{
-  @apply content-[''] absolute top-1/2 -translate-y-[52%] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-forrest-green opacity-70 -z-10
+  @apply content-[''] absolute top-1/2 -translate-y-[50%] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-forrest-green opacity-70 -z-10
 }
  
 .react-calendar__month-view{
